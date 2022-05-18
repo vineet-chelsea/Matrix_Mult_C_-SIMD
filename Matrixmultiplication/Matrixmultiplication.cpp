@@ -3,19 +3,31 @@
 
 #include <iostream>
 #include<stdlib.h>  
+#include<time.h>
 using namespace std;
 
 int main()
 {
-	int a[2][2], b[2][3];
+	srand(time(0));
+	int a[10][10], b[10][10];
 	int arow, acol, brow, bcol;
 	arow = sizeof(a) / sizeof(a[0]);
 	acol = sizeof(a[0]) / sizeof(int);
-	brow = sizeof(b)/sizeof(b[0]);
+	brow = sizeof(b) / sizeof(b[0]);
 	bcol = sizeof(b[0]) / sizeof(int);
-	int product[2][3];
+	int product[10][10];
 	cout << arow << " * " << acol << endl;
 	cout << brow << " * " << bcol << endl;
+	for (int i = 0; i < arow;i++) {
+		for (int j = 0; j < acol;j++) {
+			a[i][j] = rand()%10+1;
+		}
+	}
+	for (int i = 0; i < brow;i++) {
+		for (int j = 0; j < bcol;j++) {
+			b[i][j] = rand()%10+1;
+		}
+	}
 	int sum = 0;
 	for (int i = 0; i < arow;i++) {
 
@@ -26,13 +38,32 @@ int main()
 			product[i][j] = sum;
 			sum = 0;
 		}
-		cout << " Matrix Product is " << endl;
-		for (int i = 0;i < 2;i++) {
-			for (int j = 0; j < 3;j++) {
-				cout << product[i][j] << " ";
-			}
-			cout << endl;
+	}
+	int prodrow = sizeof(product) / sizeof(product[0]);
+	int prodcol = sizeof(product[0]) / sizeof(int);
+	cout << "Matrix A " << "\n";
+	for (int i = 0;i < arow;i++) {
+		for (int j = 0; j < acol;j++) {
+			cout << a[i][j] << " ";
 		}
-		
+		cout << endl;
+
+	}
+	cout << "Matrix B " << "\n";
+	for (int i = 0;i < brow;i++) {
+		for (int j = 0; j < bcol;j++) {
+			cout << b[i][j] << " ";
+		}
+		cout << endl;
+
+	}
+
+	cout << " Matrix Product is " << endl;
+	for (int i = 0;i < prodrow;i++) {
+		for (int j = 0; j < prodcol;j++) {
+			cout << product[i][j] << " ";
+		}
+		cout << endl;
+
 	}
 }
